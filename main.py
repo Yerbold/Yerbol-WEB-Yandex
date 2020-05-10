@@ -1,6 +1,6 @@
 from flask import jsonify, Flask, render_template, redirect, request, make_response, session, abort
 from data import db_session
-from flask_ngrok import run_with_ngrok
+import os
 
 from data.records import Records
 
@@ -38,7 +38,8 @@ def not_found(error):
 
 def main():
     db_session.global_init("db/records.sqlite")
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 
 if __name__ == '__main__':
