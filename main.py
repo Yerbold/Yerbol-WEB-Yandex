@@ -36,14 +36,9 @@ def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 
-def run_local_with_ngrok():
-    run_with_ngrok(app)
-    app.run()
-
-
 def main():
     db_session.global_init("db/records.sqlite")
-    run_local_with_ngrok()
+    app.run()
 
 
 if __name__ == '__main__':
